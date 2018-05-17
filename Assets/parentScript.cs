@@ -8,16 +8,14 @@ public class parentScript : MonoBehaviour
 {
 
 	public Transform transform;
+	public Vector3 parentCenter;
 	private float i = 0.0F;
 
 	// Use this for initialization
 	void Start () {
 		foreach (Transform child in transform)
-		{
-			Debug.Log("Child:", child);
 			child.gameObject.AddComponent<move>();
-			i += 0.25F;
-		}
+		parentCenter = transform.GetComponent<Renderer>().bounds.center;
 	}
 	
 	// Update is called once per frame

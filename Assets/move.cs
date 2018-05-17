@@ -13,11 +13,13 @@ public class move : MonoBehaviour
 	private Vector3 startPosition;
 	private bool flag = false;
 	private Vector3 center;
+	private Vector3 parentCenter;
 
 	// Use this for initialization
 	void Start ()
 	{
 		center = transform.GetComponent<Renderer>().bounds.center;
+		parentCenter = transform.parent.GetComponent<parentScript>().parentCenter;
 		target = new Vector3(spread * center.x, spread * center.y, spread * center.z);
 		Debug.Log(transform.GetComponent<Renderer>().bounds.center);
 		Debug.Log(target);
