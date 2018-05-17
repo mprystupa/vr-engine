@@ -20,6 +20,7 @@ public class parentScript : MonoBehaviour
 			child.gameObject.AddComponent<MeshCollider>();
 			child.gameObject.AddComponent<Drag_Move>();
 			child.gameObject.AddComponent<MouseManager>();
+            child.gameObject.AddComponent<Camera_Move>();
 		}
 		parentCenter = transform.GetComponent<Renderer>().bounds.center;
 	}
