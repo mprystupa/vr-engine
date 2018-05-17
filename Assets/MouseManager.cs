@@ -20,7 +20,7 @@ public class MouseManager : MonoBehaviour {
 
         if (Physics.Raycast(ray, out hitInfo))
         {
-            GameObject hitObject = hitInfo.transform.root.gameObject;
+            GameObject hitObject = hitInfo.transform.gameObject;
             SelectObject(hitObject);
         }
         else

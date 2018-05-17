@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DragMove : MonoBehaviour
+public class Drag_Move : MonoBehaviour
 {
 
     float distance = 10;

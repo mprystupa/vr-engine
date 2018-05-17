@@ -14,7 +14,12 @@ public class parentScript : MonoBehaviour
 	// Use this for initialization
 	void Start () {
 		foreach (Transform child in transform)
+		{
 			child.gameObject.AddComponent<move>();
+			child.gameObject.AddComponent<MeshCollider>();
+			child.gameObject.AddComponent<Drag_Move>();
+			child.gameObject.AddComponent<MouseManager>();
+		}
 		parentCenter = transform.GetComponent<Renderer>().bounds.center;
 	}
 	
