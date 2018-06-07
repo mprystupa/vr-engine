@@ -11,16 +11,17 @@ public class Drag_Move : MonoBehaviour
 
     void Start()
     {
-        distance = transform.parent.GetComponent<parentScript>().mainCamera
-                       .GetComponent<Transform>().position.x;
+        distance = transform.parent.GetComponent<parentScript>().mainCamera.GetComponent<Transform>().position.x;
     }
 
     void OnMouseDrag()
     {
-        offset = transform.GetComponent<Renderer>().bounds.center - transform.position;
-        Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance);
-        Vector3 objPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        
+            offset = transform.GetComponent<Renderer>().bounds.center - transform.position;
+            Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance);
+            Vector3 objPosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
-        transform.position = objPosition - offset;
+            transform.position = objPosition - offset;
+        
     }
 }
