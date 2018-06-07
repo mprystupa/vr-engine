@@ -9,6 +9,8 @@ public class Drag_Move : MonoBehaviour
     public float rotSpeed = 20.0F;
     private float distance;
     private Vector3 offset;
+    private Vector3 startingPosition;
+    private Boolean isMouseClicked = false;
 
     void Start()
     {
@@ -18,12 +20,22 @@ public class Drag_Move : MonoBehaviour
                                         .GetComponent<Transform>().position.y, 2) + 
                                     Math.Pow(transform.parent.GetComponent<parentScript>().mainCamera
                                         .GetComponent<Transform>().position.z, 2));
+
+        startingPosition = this.transform.GetComponent<move>().startingPosition;
+    }
+
+    void Update()
+    {
+        if (Vector3.Distance(transform.position, startingPosition) < 0.5 && isMouseClicked == false) 
+            transform.position = startingPosition;
     }
 
     void OnMouseDrag()
-    {   
+    {
+        isMouseClicked = true;
         if (Input.GetKey(KeyCode.LeftShift))
         {
+            
             float rotX = Input.GetAxis("Mouse X") * rotSpeed * Mathf.Deg2Rad;
             float rotY = Input.GetAxis("Mouse Y") * rotSpeed * Mathf.Deg2Rad;
  
@@ -38,5 +50,10 @@ public class Drag_Move : MonoBehaviour
 
             transform.position = objPosition - offset;
         }    
+    }
+
+    private void OnMouseUp()
+    {
+        isMouseClicked = false;
     }
 }

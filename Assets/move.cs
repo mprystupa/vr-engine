@@ -15,7 +15,7 @@ public class move : MonoBehaviour
 	private Vector3 target;
 	
 	private Quaternion startingRotation;
-	private Vector3 startingPosition;
+	public Vector3 startingPosition;
 	
 	private bool isSpreaded = false;
 	private bool isReassembling = false;
