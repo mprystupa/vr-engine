@@ -19,7 +19,6 @@ public class parentScript : MonoBehaviour
 			child.gameObject.AddComponent<Drag_Move>();
 			child.gameObject.AddComponent<MouseManager>();
 		}
-		parentCenter = transform.GetComponent<Renderer>().bounds.center;
 	}
 	
 	// Update is called once per frame
