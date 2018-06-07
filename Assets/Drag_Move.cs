@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
@@ -11,8 +12,12 @@ public class Drag_Move : MonoBehaviour
 
     void Start()
     {
-        distance = transform.parent.GetComponent<parentScript>().mainCamera
-                       .GetComponent<Transform>().position.x;
+        distance = (float)Math.Sqrt(Math.Pow(transform.parent.GetComponent<parentScript>().mainCamera
+                       .GetComponent<Transform>().position.x, 2) + 
+                                    Math.Pow(transform.parent.GetComponent<parentScript>().mainCamera
+                                        .GetComponent<Transform>().position.y, 2) + 
+                                    Math.Pow(transform.parent.GetComponent<parentScript>().mainCamera
+                                        .GetComponent<Transform>().position.z, 2));
     }
 
     void OnMouseDrag()

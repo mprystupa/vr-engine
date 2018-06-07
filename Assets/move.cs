@@ -3,17 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Animations;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class move : MonoBehaviour
 {
-	public float spread = 1.25F;
+	public float spreadSpeed = 1.25F;
 	public float smoothTime = 0.3F;
 	
 	private Vector3 velocity = Vector3.zero;
 	private Vector3 target;
 	private Vector3 startingPosition;
 	
-	private bool flag = false;
+	private bool isSpreaded = false;
+	private bool isReassembling = false;
 	
 	private Vector3 center;
 	private Vector3 parentCenter;
@@ -26,8 +28,8 @@ public class move : MonoBehaviour
 		parentCenter = transform.parent.GetComponent<parentScript>().parentCenter;
 		
 		distanceBetweenCenters = center - parentCenter;
-		target = new Vector3(spread * distanceBetweenCenters.x, spread * distanceBetweenCenters.y,
-			spread * distanceBetweenCenters.z);
+		target = new Vector3(spreadSpeed * distanceBetweenCenters.x, spreadSpeed * distanceBetweenCenters.y,
+			spreadSpeed * distanceBetweenCenters.z);
 
 		startingPosition = transform.localPosition;
 //		Debug.Log(transform.GetComponent<Renderer>().bounds.center);
@@ -40,16 +42,21 @@ public class move : MonoBehaviour
 	{
 		if (Input.GetKeyDown("a"))
 		{
-			flag = !flag;
+			isSpreaded = !isSpreaded;
+			isReassembling = true;
 		}
 
-		if (flag == true)
+		if (isSpreaded == true)
 		{
 			transform.localPosition = Vector3.SmoothDamp(transform.localPosition, target, ref velocity, smoothTime);	
 		}
-		else if (flag == false)
+		else if (isSpreaded == false)
 		{
-			transform.localPosition = Vector3.SmoothDamp(transform.localPosition, startingPosition, ref velocity, smoothTime);	
+			if (isReassembling == true)
+			{
+				transform.localPosition = Vector3.SmoothDamp(transform.localPosition, startingPosition, ref velocity, smoothTime);
+				if (transform.localPosition == startingPosition) isReassembling = false;
+			}	
 		}
 	}
 }

@@ -6,10 +6,8 @@ using UnityEngine;
 
 public class parentScript : MonoBehaviour
 {
-
-	public Transform transform;
-	public Vector3 parentCenter;
 	public Camera mainCamera;
+	public Vector3 parentCenter;
 	private float i = 0.0F;
 
 	// Use this for initialization
