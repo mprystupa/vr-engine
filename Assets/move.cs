@@ -9,9 +9,12 @@ public class move : MonoBehaviour
 {
 	public float spreadSpeed = 1.25F;
 	public float smoothTime = 0.3F;
+	public float rotationSpeed = 0.1F;
 	
 	private Vector3 velocity = Vector3.zero;
 	private Vector3 target;
+	
+	private Quaternion startingRotation;
 	private Vector3 startingPosition;
 	
 	private bool isSpreaded = false;
@@ -32,9 +35,7 @@ public class move : MonoBehaviour
 			spreadSpeed * distanceBetweenCenters.z);
 
 		startingPosition = transform.localPosition;
-//		Debug.Log(transform.GetComponent<Renderer>().bounds.center);
-//		Debug.Log(target);
-		Debug.Log("Parent Center:" + parentCenter);
+		startingRotation = transform.localRotation;
 	}
 	
 	// Update is called once per frame
@@ -48,13 +49,15 @@ public class move : MonoBehaviour
 
 		if (isSpreaded == true)
 		{
-			transform.localPosition = Vector3.SmoothDamp(transform.localPosition, target, ref velocity, smoothTime);	
+			transform.localPosition = Vector3.SmoothDamp(transform.localPosition, target, ref velocity, smoothTime);
+			transform.localRotation = Quaternion.Lerp(transform.localRotation, startingRotation, rotationSpeed);
 		}
 		else if (isSpreaded == false)
 		{
 			if (isReassembling == true)
 			{
 				transform.localPosition = Vector3.SmoothDamp(transform.localPosition, startingPosition, ref velocity, smoothTime);
+				transform.localRotation = Quaternion.Lerp(transform.localRotation, startingRotation, rotationSpeed);
 				if (transform.localPosition == startingPosition) isReassembling = false;
 			}	
 		}
