@@ -12,12 +12,12 @@ public class move : MonoBehaviour
 	public float rotationSpeed = 0.1F;
 	
 	private Vector3 velocity = Vector3.zero;
-	private Vector3 target;
+	public Vector3 target;
 	
 	private Quaternion startingRotation;
-	private Vector3 startingPosition;
+	public Vector3 startingPosition;
 	
-	private bool isSpreaded = false;
+	public bool isSpreaded = false;
 	private bool isReassembling = false;
 	
 	private Vector3 center;
@@ -44,7 +44,7 @@ public class move : MonoBehaviour
 		if (Input.GetKeyDown("p"))
 		{
 			isSpreaded = !isSpreaded;
-			isReassembling = true;
+			if (isSpreaded == false) isReassembling = true;
 		}
 
 		if (isSpreaded == true)
@@ -58,7 +58,8 @@ public class move : MonoBehaviour
 			{
 				transform.localPosition = Vector3.SmoothDamp(transform.localPosition, startingPosition, ref velocity, smoothTime);
 				transform.localRotation = Quaternion.Lerp(transform.localRotation, startingRotation, rotationSpeed);
-				if (transform.localPosition == startingPosition) isReassembling = false;
+				if (transform.localPosition == startingPosition)
+					isReassembling = false;
 			}	
 		}
 	}
