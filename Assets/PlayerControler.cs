@@ -7,7 +7,7 @@ public class PlayerControler : MonoBehaviour
     //Obiekt odpowiedzialny za ruch gracza.
     public CharacterController characterControler;
     //Czulość myszki (Sensitivity)
-    public float mouseSensitivity = 4.0f;
+    public float mouseSensitivity = 10.0f;
     // Use this for initialization
     float minFov = 15f;
     float maxFov = 90f;
@@ -28,11 +28,11 @@ public class PlayerControler : MonoBehaviour
         //Pobranie wartości ruchu myszki lewo/prawo.
         // jeżeli wartość dodatnia to poruszamy w prawo,
         // jeżeli wartość ujemna to poruszamy w lewo.
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftControl))
         {
             float mouseLeftRight = Input.GetAxis("Mouse X") * mouseSensitivity;
             float mouseUpDown = Input.GetAxis("Mouse Y") * mouseSensitivity;
-            transform.Rotate(0, mouseLeftRight, mouseUpDown);
+            transform.Rotate(mouseUpDown, mouseLeftRight, 0);
         }
     }
     private void zoom()

@@ -26,8 +26,9 @@ public class Drag_Move : MonoBehaviour
 
     void Update()
     {
-        if (Vector3.Distance(transform.position, startingPosition) < 0.5 && isMouseClicked == false) 
+        if (Vector3.Distance(transform.position, startingPosition) < 0.5 && isMouseClicked == true) 
             transform.position = startingPosition;
+        else if (Vector3.Distance(transform.position, startingPosition) < 0.5 && isMouseClicked == false) ;
     }
 
     void OnMouseDrag()
