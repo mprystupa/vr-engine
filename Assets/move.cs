@@ -15,7 +15,7 @@ public class move : MonoBehaviour
 	public Vector3 target;
 	
 	private Quaternion startingRotation;
-	public Vector3 startingPosition;
+	public Vector3 startingPosition, startingPositionGlobal;
 	
 	public bool isSpreaded = false;
 	private bool isReassembling = false;
@@ -35,6 +35,7 @@ public class move : MonoBehaviour
 			spreadSpeed * distanceBetweenCenters.z);
 
 		startingPosition = transform.localPosition;
+		startingPositionGlobal = transform.GetComponent<Renderer>().bounds.center;
 		startingRotation = transform.localRotation;
 	}
 	

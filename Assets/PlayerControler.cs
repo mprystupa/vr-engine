@@ -28,7 +28,7 @@ public class PlayerControler : MonoBehaviour
         //Pobranie wartości ruchu myszki lewo/prawo.
         // jeżeli wartość dodatnia to poruszamy w prawo,
         // jeżeli wartość ujemna to poruszamy w lewo.
-        if (Input.GetKey(KeyCode.LeftControl))
+        if (Input.GetKey(KeyCode.Z))
         {
             float mouseLeftRight = Input.GetAxis("Mouse X") * mouseSensitivity;
             float mouseUpDown = Input.GetAxis("Mouse Y") * mouseSensitivity;
